@@ -31,3 +31,14 @@
 .post-tail-wrapper .post-tags {
   display: none !important;
 }
+
+// Black sidebar in dark mode (chosen with the toggle, or following the system setting).
+:root[data-bs-theme='dark'] {
+  --sidebar-bg: #000;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-bs-theme]) {
+    --sidebar-bg: #000;
+  }
+}
