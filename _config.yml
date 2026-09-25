@@ -1,0 +1,78 @@
+# Site settings. Theme options: https://github.com/cotes2020/jekyll-theme-chirpy
+
+theme: jekyll-theme-chirpy
+lang: en
+timezone: Europe/Istanbul
+
+title: ahmetak4n
+tagline: Application Security Engineer, Golang, Java
+description: ahmetak4n’s blog — application security, mobile and web security research.
+url: https://ahmetak4n.github.io
+baseurl: ""
+avatar: https://secure.gravatar.com/avatar/d678240cfb8821cc703e90ccafd0b9094031bf80e21e41e2fc63ef807eb65255?s=256&d=identicon&r=g
+
+github:
+  username: ahmetak4n
+
+twitter:
+  username: ahmetak4n
+
+social:
+  name: Ahmet Akan
+  links:
+    - https://github.com/ahmetak4n
+    - https://x.com/ahmetak4n
+    - https://medium.com/@ahmetak4n
+
+toc: true
+paginate: 10
+paginate_path: /page/:num/
+
+kramdown:
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    css_class: highlight
+    span:
+      line_numbers: false
+    block:
+      line_numbers: true
+
+collections:
+  tabs:
+    output: true
+    sort_by: order
+
+defaults:
+  - scope:
+      type: posts
+    values:
+      layout: post
+      toc: true
+      permalink: /:title/ # same URLs as the old WordPress site
+  - scope:
+      type: tabs
+    values:
+      layout: page
+      permalink: /:title/
+
+jekyll-archives:
+  enabled: [categories, tags]
+  layouts:
+    category: category
+    tag: tag
+  permalinks:
+    category: /categories/:name/
+    tag: /tags/:name/
+
+sass:
+  style: compressed
+
+compress_html:
+  clippings: all
+  comments: all
+  endings: all
+  ignore:
+    envs: [development]
+
+exclude:
+  - README.md

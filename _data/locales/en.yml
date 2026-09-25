@@ -1,0 +1,5 @@
+# Overrides for the theme's English texts.
+copyright:
+  license:
+    template: "" # hides "This post is licensed under CC BY 4.0 by the author."
+meta: "" # hides "Using the Chirpy theme for Jekyll."

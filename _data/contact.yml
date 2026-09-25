@@ -1,0 +1,8 @@
+# Contact icons at the bottom of the sidebar.
+- type: github
+  icon: fab fa-github
+- type: twitter
+  icon: fa-brands fa-x-twitter
+- type: medium
+  icon: fab fa-medium
+  url: https://medium.com/@ahmetak4n

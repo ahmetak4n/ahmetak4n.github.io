@@ -1,0 +1,12 @@
+# Build output
+_site/
+.jekyll-cache/
+.jekyll-metadata
+
+# Bundler
+.bundle/
+Gemfile.lock
+
+# Local tooling
+.claude/
+.DS_Store

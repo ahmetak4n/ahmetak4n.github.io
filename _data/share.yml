@@ -1,0 +1,5 @@
+# Share buttons at the bottom of each post.
+platforms:
+  - type: Twitter
+    icon: fa-brands fa-square-x-twitter
+    link: https://twitter.com/intent/tweet?text=TITLE&url=URL

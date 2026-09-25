@@ -1,0 +1,33 @@
+---
+---
+
+// Loads the Chirpy styles; copied from the theme so custom styles can be added below.
+@use 'abstracts/variables' with (
+  $theme: '{{ site.theme_mode }}'
+);
+
+/* prettier-ignore */
+@use 'main
+{%- if jekyll.environment == 'production' -%}
+  .bundle
+{%- endif -%}
+';
+
+// Center the avatar, site title and tagline in the sidebar.
+#sidebar .profile-wrapper {
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  text-align: center;
+}
+
+#sidebar #avatar,
+#sidebar .site-title {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// Hide the category and tag list at the end of each post.
+.post-tail-wrapper > div:first-child,
+.post-tail-wrapper .post-tags {
+  display: none !important;
+}
