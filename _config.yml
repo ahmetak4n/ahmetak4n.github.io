@@ -5,7 +5,7 @@ timezone: Europe/Istanbul
 title: ahmetak4n
 tagline: Application Security Engineer, Golang, Java
 description: ahmetak4n’s blog — application security, mobile and web security research.
-url: https://ahmetakam.com
+url: https://ahmetakan.com
 baseurl: ""
 avatar: /assets/img/avatar.png
 logo: /assets/img/avatar.png
@@ -13,7 +13,7 @@ logo: /assets/img/avatar.png
 author:
   name: Ahmet Akan
   twitter: ahmetak4n
-  url: https://ahmetakam.com/about/
+  url: https://ahmetakan.com/about/
 
 github:
   username: ahmetak4n
