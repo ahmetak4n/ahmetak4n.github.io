@@ -1,5 +1,3 @@
-# Site settings. Theme options: https://github.com/cotes2020/jekyll-theme-chirpy
-
 theme: jekyll-theme-chirpy
 lang: en
 timezone: Europe/Istanbul
@@ -7,7 +5,7 @@ timezone: Europe/Istanbul
 title: ahmetak4n
 tagline: Application Security Engineer, Golang, Java
 description: ahmetak4n’s blog — application security, mobile and web security research.
-url: https://ahmetak4n.github.io
+url: https://ahmetakam.com
 baseurl: ""
 avatar: /assets/img/avatar.png
 
@@ -48,7 +46,7 @@ defaults:
     values:
       layout: post
       toc: true
-      permalink: /:title/ # same URLs as the old WordPress site
+      permalink: /:title/
   - scope:
       type: tabs
     values:
