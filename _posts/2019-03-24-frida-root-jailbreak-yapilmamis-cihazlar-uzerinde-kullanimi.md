@@ -29,17 +29,17 @@ gerçekleştirebilmesine olanak sağlamaktadır.
 
 İlk olarak <https://github.com/frida/frida/releases> adresinden hedef sistem mimarisine uygun olan frida-gadget aracı indirilerek işlemlere başlanır (“frida-gadget-12.4.3-android-arm64.so.xz” üzerinden işlemlerin anlatılması gerçekleştirilecektir)
 
-![](01.png)
+![İlk olarak https://github.com/frida/frida/releases adresinden hedef sistem mimarisine uygun olan frida-gadget aracı indirilerek işlemlere başlanır ('frida-gadget-12.4.3-android-arm64.so.xz' üzerinden…](01.png)
 
 **NOT:** “arm64” ile “aarch64” aynı mimariyi temsil etmektedir.
 
 Örnek işlemler Owasp UnCrackable-Level2 uygulaması üzerinde gerçekleştirilecektir. Bu nedenle “apktool” aracı ile bu uygulamanın smali kodlarına dönüştürülmesi gerekmektedir.
 
-![](02.png)
+![Bu nedenle 'apktool' aracı ile bu uygulamanın smali kodlarına dönüştürülmesi gerekmektedir.](02.png)
 
 Daha sonra, elde edilen uygulama klasörü içerisinde bulunan “/lib/arm64-v8a” dizinine erişim sağlanır. “frida-gadget-12.4.3-android-arm64.so.xz” sıkıştırılmış dosyası içerisinden çıkartılan “frida-gadget-12.4.1-android-arm64.so” dosyası bu dizine taşınır. Buradaki önemli nokta, “frida-gadget-12.4.1-android-arm64.so” isminin “libfrida-gadget.so” şeklinde güncellenmesi gerektiğidir (JNI yapısı gereği “libfrida-gadget.so” şeklinde tanımlanmış bir kütüphaneye, uygulama içerisinden “frida-gadget” anahtar kelimesi ile erişim sağlanabilmektedir)
 
-![](03.png)
+![Buradaki önemli nokta, 'frida-gadget-12.4.1-android-arm64.so' isminin 'libfrida-gadget.so' şeklinde güncellenmesi gerektiğidir (JNI yapısı gereği 'libfrida-gadget.so' şeklinde tanımlanmış bir…](03.png)
 
 Bir
 sonraki adımda smali kodları içerisine ‘System.loadLibrary(“frida-gadget”)’ ifadesinin enjekte edilmesi gerekmektedir. Bu işlem için
@@ -50,21 +50,21 @@ Uygulama içerisinde hali hazırda native-library kullanımı bulunduğu görül
 
 Native-library tanımlaması ve kullanılacak metot tanımlamalarına ilişkin smali kodları aşağıdaki şekildedir.
 
-![](04.png)
+![Native-library tanımlaması ve kullanılacak metot tanımlamalarına ilişkin smali kodları aşağıdaki şekildedir.](04.png)
 
-![](05.png)
+![Native-library tanımlaması ve kullanılacak metot tanımlamalarına ilişkin smali kodları aşağıdaki şekildedir. (devamı)](05.png)
 
 “frida-gadget” kütüphanesinin smali kodları içerisine eklenilmesi sonucunda elde edilen görüntü aşağıdaki şekildedir.
 
-![](06.png)
+!['frida-gadget' kütüphanesinin smali kodları içerisine eklenilmesi sonucunda elde edilen görüntü aşağıdaki şekildedir.](06.png)
 
 Sırada “AndroidManifest.xml” dosyası içerisine “<uses-permission android:name=”android.permission.INTERNET” />” izninin eklenmesi işlemi bulunmaktadır. İşlem sonrasında “AndroidManifest.xml” dosyasının görüntüsü aşağıdaki şekilde olacaktır (“frida-gadget” ile “frida-client” arasında bağlantı kurma işlemi için bu izin bilgisinin tanımlanması gerekmektedir)
 
-![](07.png)
+![İşlem sonrasında 'AndroidManifest.xml' dosyasının görüntüsü aşağıdaki şekilde olacaktır ('frida-gadget' ile 'frida-client' arasında bağlantı kurma işlemi için bu izin bilgisinin tanımlanması…](07.png)
 
 Daha sonra uygulamanın yeniden paketlenmesi işlemi bulunmaktadır. “apktool” aracı ile bu işlem aşağıdaki şekilde gerçekleştirilmektedir.
 
-![](08.png)
+!['apktool' aracı ile bu işlem aşağıdaki şekilde gerçekleştirilmektedir.](08.png)
 
 Son adım olarak
 
@@ -72,7 +72,7 @@ Son adım olarak
 
 komutu ile keystore oluşturulur.
 
-![](09.png)
+!['keytool -genkey -v -keystore newStoreName.keystore -alias aliasName -keyalg RSA -keysize 2048 -validity 10000' komutu ile keystore oluşturulur.](09.png)
 
 Oluşturulan keystore ile
 
@@ -80,13 +80,13 @@ Oluşturulan keystore ile
 
 komutu kullanılarak uygulamanın paketlenmesi işlemi tamamlanmış olur.
 
-![](10.png)
+!['jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore keyStoreName.keystore apkName.apk aliasName komutu kullanılarak uygulamanın paketlenmesi işlemi tamamlanmış olur.](10.png)
 
 Elde edilen “.apk” dosyası aşağıdaki şekilde hedef sistem üzerine yüklenir.
 
 Sistem üzerine yüklenilen uygulamanın çalıştırılması ile birlikte “27042” portunun sistem üzerinde açıldığı görülmektedir.
 
-![](11.png)
+![Sistem üzerine yüklenilen uygulamanın çalıştırılması ile birlikte '27042' portunun sistem üzerinde açıldığı görülmektedir.](11.png)
 
 Hedef sistemin USB ile bağlı olduğu bilgisayar üzerinde frida aracı kullanılarak, hedef cihaz üzerinde bulunan uygulamaların listelenebildiği görülmektedir. Bu işlem sonucunda “Gadget” isimli bir uygulamanın bulunduğu tespit edilmektedir.
 
@@ -96,7 +96,7 @@ Kurulan bağlantı sonrasında gönderilen javascript kodlarının hedef sistem 
 
 - Java.perform(function(){Java.enumerateLoadedClasses({“onMatch”:function(className){ console.log(className) },”onComplete”:function(){}})})
 
-![](12.png)
+![Java.perform(function(){Java.enumerateLoadedClasses({'onMatch':function(className){ console.log(className) },'onComplete':function(){}})})](12.png)
 
 ### ios
 
@@ -113,15 +113,15 @@ Elde edilen yeni “.ipa” dosyasının hedef sistem üzerinde çalıştırılm
 
 Örnek olarak Owasp “UnCrackable-Level1.ipa” uygulaması kullanılacaktır. İlk olarak UnCrackable-Level1.ipa uygulamasına ait dosyalar herhangi bir arşiv açma aracı yardımı ile “.ipa” formatı içerisinden çıkartılır.
 
-![](13.png)
+![İlk olarak UnCrackable-Level1.ipa uygulamasına ait dosyalar herhangi bir arşiv açma aracı yardımı ile '.ipa' formatı içerisinden çıkartılır.](13.png)
 
 Daha sonra <https://github.com/frida/frida/releases> adresinden “frida-gadget-12.4.3-ios-universal.dylib.xz” arşiv dosyası indirilir ve içerisinde bulunan “frida-gadget-12.4.3-ios-universal.dylib” dosyası dışarı çıkartılır.
 
-![](14.png)
+![Daha sonra https://github.com/frida/frida/releases adresinden 'frida-gadget-12.4.3-ios-universal.dylib.xz' arşiv dosyası indirilir ve içerisinde bulunan 'frida-gadget-12.4.3-ios-universal.dylib'…](14.png)
 
 Dışarı çıkartılmış olan “frida-gadget-12.4.3-ios-universal.dylib” dosyasının ismi “FridaGadget.dylib” olacak şekilde güncellenmektedir.
 
-![](15.png)
+![Dışarı çıkartılmış olan 'frida-gadget-12.4.3-ios-universal.dylib' dosyasının ismi 'FridaGadget.dylib' olacak şekilde güncellenmektedir.](15.png)
 
 Bu noktaya kadar gerçekleştirilen işlemlerin hepsi Android üzerinde gerçekleştirilen işlemler ile aynıdır. “frida-gadget” kütüphanesinin hedef uygulama içerisine eklenmesi ve uygulama içerisinden çağırılması işlemleri Android üzerinde gerçekleştirilen işlemlerden tamamen farklıdır.
 
@@ -146,7 +146,7 @@ kütüphanesi çağırılabilmektedir.
 
 Fakat IOS uygulamaları üzerinde “smali” benzeri bir ara dil (intermediate language) bulunmamaktadır. Bu nedenle gerekli değişikliklerin gerçekleştirilebilmesi için Mach-O yapısı hakkında fikir sahibi olunması gerekmektedir. Mach-O, aşağıdaki bölümlerden oluşmaktadır.
 
-![](16.png)
+![Mach-O, aşağıdaki bölümlerden oluşmaktadır.](16.png)
 
 “Header” bölümü CPU tipi, binary boyutu ve benzeri genel bilgileri içermektedir. “Load Commands” bölümü binary içeriğin konumlarını barındıran bir tablo olarak düşünülebilir. Her bir segment konumları bu alanlar içerisinde saklanmaktadır. Ayrıca her bir segment içerisinde bulunan komutlara ilişkin tip, isim ve konum gibi bilgilerde bu alan içerisinde bulunmaktadır. “Data” bölümü ise uygulama kodları ve verilenin saklandığı alan olarak tanımlanmaktadır.
 
@@ -186,19 +186,19 @@ bilgiler doğrultusunda, UnCrackable-Level1.ipa uygulaması içerisine
 
 İlk olarak Xcode üzerinden “uncrackable_repackage” isimli yeni bir uygulama oluşturulur.
 
-![](17.png)
+![İlk olarak Xcode üzerinden 'uncrackable_repackage' isimli yeni bir uygulama oluşturulur.](17.png)
 
 Elimizde bulunan IOS cihazın USB ile kullanılan bilgisayar üzerine bağlanması gerçekleştirilir. Daha sonra Xcode üzerinde oluşturulan yeni projenin USB ile bağlı olan cihaz üzerinde çalıştırılması sağlanır.
 
-![](18.png)
+![Daha sonra Xcode üzerinde oluşturulan yeni projenin USB ile bağlı olan cihaz üzerinde çalıştırılması sağlanır.](18.png)
 
 Uygulamanın derlenmesi ile “mobilprovision” dosyasının Xcode tarafından üretildiği görülmektedir.
 
-![](19.png)
+![Uygulamanın derlenmesi ile 'mobilprovision' dosyasının Xcode tarafından üretildiği görülmektedir.](19.png)
 
 “cp embedded.mobilprovision ~/Desktop/UnCrackable-Level1” komutu ile “mobilprovision” dosyası hedef “.ipa” dosyası ile aynı dizin içerisine taşınmaktadır.
 
-![](20.png)
+!['cp embedded.mobilprovision ~/Desktop/UnCrackable-Level1' komutu ile 'mobilprovision' dosyası hedef '.ipa' dosyası ile aynı dizin içerisine taşınmaktadır.](20.png)
 
 Elde edilen “embedded.mobilprovision -(provisioning profile)” dosyası içerisinde bulunan sertifika, cihaz ve uygulama yetkileri gibi bilgilerin düzgün bir formatta elde edilmesi gerekmektedir. Bunun için ilk olarak; “security” aracı ile
 
@@ -206,23 +206,23 @@ Elde edilen “embedded.mobilprovision -(provisioning profile)” dosyası içer
 
 komutu kullanılarak kriptografik bilgilerin decode edilerek “profile.plist” dosyası içerisine yazılması sağlanmaktadır (“-D” flag değeri “decode”, “-i” flag değeri interaktif-shell özelliklerinin kullanılacağını belirtmektedir)
 
-![](21.png)
+!['security cms -D -i embedded.mobilprovision > profile.plist' komutu kullanılarak kriptografik bilgilerin decode edilerek 'profile.plist' dosyası içerisine yazılması sağlanmaktadır ('-D' flag değeri…](21.png)
 
 Daha sonra “PlistBuddy” aracı kullanılarak “profile.plist” içerisinde bulunan “Entitlements” bölümü “entitlements.plist” dosyası içerisine kopyalanmaktadır. Bu işlem
 
 - “/usr/libexec/PlistBuddy -x -c ‘Print :Entitlements’ profile.plist > entitlements.plist” komutu ile gerçekleştirilmektedir.
 
-![](22.png)
+!['/usr/libexec/PlistBuddy -x -c 'Print :Entitlements' profile.plist > entitlements.plist' komutu ile gerçekleştirilmektedir.](22.png)
 
 “FridaGadget.dylib” kütüphanesinin uygulama içerisine eklenmesi işlemi için “[optool](https://github.com/alexzielenski/optool.git)” isimli bir araç kullanılacaktır. Araç kurulumu aşağıdaki şekilde gerçekleştirilebilmektedir.
 
-![](23.png)
+![Araç kurulumu aşağıdaki şekilde gerçekleştirilebilmektedir.](23.png)
 
 **Not:** “build/Release/optool” dizini altında uygulamanın çalıştırılabilir dosyası bulunmaktadır.
 
 “cp FridaGadget.dylib Payload/UnCrackable\ Level \ 1.app” komutu ile frida kütüphanesi hedef uygulama içerisine taşınır.
 
-![](24.png)
+!['cp FridaGadget.dylib Payload/UnCrackable\ Level \ 1.app' komutu ile frida kütüphanesi hedef uygulama içerisine taşınır.](24.png)
 
 Bir sonraki
 adımda, uygulama içerisinde frida kütüphanesinin çağırılmasını sağlayacak olan
@@ -230,7 +230,7 @@ işlemler “optool” aracı ile aşağıdaki şekilde gerçekleştirilir.
 
 - “optool install -c load -p “@executable_path/FridaGadget.dylib” -t Payload/UnCrackable \Level \1.app/UnCrackable\ Level\ 1″
 
-![](25.png)
+!['optool install -c load -p '@executable_path/FridaGadget.dylib' -t Payload/UnCrackable \Level \1.app/UnCrackable\ Level\ 1″](25.png)
 
 Uygulama
 içerisine frida kütüphanesinin eklenmesi işlemi bu şekilde tanımlanmış
@@ -241,7 +241,7 @@ amacı ile gerçekleştirilecektir.
 
 - “cp embedded.mobilprovision Payload/Uncrackable\ Level\ 1.app/embedded.mobilprovision”
 
-![](26.png)
+!['cp embedded.mobilprovision Payload/Uncrackable\ Level\ 1.app/embedded.mobilprovision'](26.png)
 
 Daha sonra hedef uygulama içerisinde bulunan “Info.plist” dosyası üzerinde, yeni kullanıcı profiline ait bilgilerin güncellenmesi işlemi
 
@@ -249,15 +249,15 @@ Daha sonra hedef uygulama içerisinde bulunan “Info.plist” dosyası üzerind
 
 komutu gerçekleştirilmektedir.
 
-![](27.png)
+!['/usr/libexec/PlistBuddy -c 'Set :CFBundleIdentifier Aora.uncrackable-repackage' Payload/UnCrackable\ Level\ 1.app/Info.plist' komutu gerçekleştirilmektedir.](27.png)
 
 Burada dikkat edilmesi gereken nokta “-c” parametresi ile aktarılan değerdir. Hedef uygulama içerisine, Xcode üzerinde oluşturulan uygulamaya ait “mobilprovision” dosyası aktarılmıştı. Bu nedenle “Info.plist” içerisinde bulunan bilgilerde Xcode üzerinde oluşturulan uygulama ile uyumlu olacak şekilde güncellenmelidir. Bu nedenle “CBundleIdentifier” değeri, oluşturulan uygulama içerisindeki “Bundle Identifier” olacak şekilde belirlenmiştir.
 
-![](28.png)
+![Bu nedenle 'CBundleIdentifier' değeri, oluşturulan uygulama içerisindeki 'Bundle Identifier' olacak şekilde belirlenmiştir.](28.png)
 
 Sıradaki işlemde hedef uygulama içerisinde bulunan “_CodeSignature” klasörü silinerek uygulamaya ait olan orijinal imza bilgileri temizlenmektedir.
 
-![](29.png)
+![Sıradaki işlemde hedef uygulama içerisinde bulunan '_CodeSignature' klasörü silinerek uygulamaya ait olan orijinal imza bilgileri temizlenmektedir.](29.png)
 
 Orijinal imza bilgilerinin silinmesinin ardından hedef uygulamanın imzalanması işlemi gerçekleştirilebilmektedir. Bu işlem için “codesign” isimli araç kullanılmaktadır. Xcode tarafından gerçekleştirilen imzalama işlemlerinde de “codesign” aracı kullanılmaktadır.
 
@@ -267,7 +267,7 @@ Orijinal imza bilgilerinin silinmesinin ardından hedef uygulamanın imzalanmas�
 
 komutu çalıştırılarak öğrenilebilmektedir.
 
-![](30.png)
+!['security find-identity -v' komutu çalıştırılarak öğrenilebilmektedir.](30.png)
 
 “Signing
 Identity” bilgisinin elde edilmesi sonrasında aşağıdaki komut kullanılarak
@@ -276,17 +276,17 @@ gerçekleştirilmektedir.
 
 - “codesign -f -s 170***************** Payload/UnCrackable\ Level\ 1.app/FridaGadget.dylib”
 
-![](31.png)
+!['codesign -f -s 170***************** Payload/UnCrackable\ Level\ 1.app/FridaGadget.dylib'](31.png)
 
 Son olarak oluşturmuş olduğumuz uygulama mobilprovision dosyası içerisinden alınan “entitlements” bilgileri kullanılarak uygulamanın tamamının imzalanması gerçekleştirilecektir.
 
 - “codesign -f -s 170***************** –entitlements entitlements.plist Payload/UnCrackable\ Level\ 1.app/UnCrackable\ Level\ 1”
 
-![](32.png)
+!['codesign -f -s 170***************** –entitlements entitlements.plist Payload/UnCrackable\ Level\ 1.app/UnCrackable\ Level\ 1'](32.png)
 
 Artık uygulama hedef sistem üzerine yüklenmeye hazırdır. Bu işlem için “ios-deploy” isimli bir araç kullanılacaktır. Araç kurulumu aşağıdaki şekilde gerçekleştirilmektedir.
 
-![](33.png)
+![Araç kurulumu aşağıdaki şekilde gerçekleştirilmektedir.](33.png)
 
 **Not:** “build/Release” dizini altında
 uygulamanın çalıştırılabilir dosyası bulunmaktadır.
@@ -295,7 +295,7 @@ uygulamanın çalıştırılabilir dosyası bulunmaktadır.
 
 - “ios-deploy –debug –bundle Payload/UnCrackable\ Level\ 1.app/”
 
-![](34.png)
+!['ios-deploy –debug –bundle Payload/UnCrackable\ Level\ 1.app/'](34.png)
 
 Görüleceği üzere uygulamanın debug modu açık bir şekilde hedef cihaz üzerinde çalıştırılması gerçekleştirilmiştir. Lokal sistem üzerinde bulunan frida aracı ile “frida-ps -U” komutu kullanılarak cihaz üzerinde bulunan “Gadget” kütüphanesinin çalışmakta olduğu doğrulanmaktadır.
 
@@ -305,6 +305,6 @@ Daha sonra “frida -U Gadget” komutu ile frida CLI kullanımı gerçekleştir
 
 - “for(var className in ObjC.classes){if (ObjC.classes.hasOwnProperty(className)){console.log(className);} }”
 
-![](35.png)
+!['for(var className in ObjC.classes){if (ObjC.classes.hasOwnProperty(className)){console.log(className);} }'](35.png)
 
 Bu işlemler sonucunda, ROOT kullanıcısına sahip olunmasada frida aracı ile çalışma zamanlı kod enjeksiyonu gerçekleştirilebildiği doğrulanmaktadır.

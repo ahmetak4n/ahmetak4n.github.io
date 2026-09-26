@@ -20,7 +20,7 @@ Konuya büyülü “DevOps” ifadesinden başlamakta fayda var. “DevOps”, m
 
 İlk başta her şey beklendiği gibi ilerlerken, “Hızlı geliştirme ve dağıtma çok güzel, peki geliştirilen uygulama güvenliğine yönelik bir kontrol yapıldı mı?” sorusu ile bir şeylerin eksik olduğu görülmüştür. Geliştiricilerin kodları geliştirme ortamlarına “push” etmesi, test script lerinin çalışması, “docker” imajlarının oluşturulması ve uygulamanın ortamdan ortama koşması esnasında uygulama güvenliğine en son sıra gelmekteydi (Sıra gelmeyen kurumlar olduğu da aşikar)
 
-![](01.png)
+![Geliştiricilerin kodları geliştirme ortamlarına 'push' etmesi, test script lerinin çalışması, 'docker' imajlarının oluşturulması ve uygulamanın ortamdan ortama koşması esnasında uygulama güvenliğine…](01.png)
 
 Temel fikri hızlı değişim/aksiyon olan bu süreç uygulama güvenliği konusunda bir takım eksikler barındırmaktaydı. Çok temel zafiyetlerin tespiti için bile “Test/Pre-Prod/Prep” gibi ortamlara kadar süreçlerin ilerlemesi gerekmekteydi (Kurum içerisinde uygulama güvenlik testlerinin hiç yapılmıyor olması da muhtemel)
 
@@ -40,7 +40,7 @@ Yukarıda bahsi geçemeyen “Vulnerability Management”, “Container Security
 
 “BlackHat 2019” etkinliğinde paylaşılan aşağıdaki görsel “DevSecOps” konusunu özetlemektedir.
 
-![](02.png)
+!['BlackHat 2019' etkinliğinde paylaşılan aşağıdaki görsel 'DevSecOps' konusunu özetlemektedir.](02.png)
 
 #### Ana Konu
 
@@ -58,11 +58,11 @@ Kısacası uygulamalarınızı saldırganlar için tarayıp, sonuçlarını tüm
 
 Uygulama aşamasına geçemeden önce ilk yapmamız gereken şey, dış dünyaya açık “SonarQube” servislerini bulmak. Bu noktada “Shodan” arama motorundan yardım almak işleri oldukça kolaylaştırdı.
 
-![](03.png)
+![Bu noktada 'Shodan' arama motorundan yardım almak işleri oldukça kolaylaştırdı.](03.png)
 
 Görüldüğü üzere 2,789 “SonarQube” sunucusu tespit edilmiştir. Fakat “Shodan” ücretsiz hesabı kullanmam sebebiyle 2,789 sonuçtan sadece 100 tanesi hakkında bilgi alabilmekteyim. Tarayıcı ara yüzü üzerinden tek-tek IP adreslerini ve projelerinin herkese açık olup/olmadığının kontrolünü yapmak zor olacağı için ufak bir uygulama ile bu işi otomatikleştirdim. (Ufak başlayıp büyüyen bir proje demek daha doğru olabilir)
 
-![](04.png)
+![Tarayıcı ara yüzü üzerinden tek-tek IP adreslerini ve projelerinin herkese açık olup/olmadığının kontrolünü yapmak zor olacağı için ufak bir uygulama ile bu işi otomatikleştirdim. (Ufak başlayıp…](04.png)
 
 Aracın kaynak kodlarına <https://github.com/ahmetak4n/radar> üzerinden erişim sağlayabilirsiniz.
 
@@ -125,7 +125,7 @@ Tespit edilen proje sayısının fazla olması sebebiyle, uygulamalara ait kayna
 
 **1** adet **veri tabanı** erişim bilgisi, gizli olması gerektiği düşünülen bir proje içerisinde tespit edilmiştir. İlgili veri tabanı içerisine uzaktan bağlantı sağlandığı doğrulanmıştır.
 
-![](05.png)
+![İlgili veri tabanı içerisine uzaktan bağlantı sağlandığı doğrulanmıştır.](05.png)
 
 **2** adet **AWS S3** API kullanıcı ID ve anahtar değeri tespit edilmiştir.
 
@@ -133,7 +133,7 @@ Tespit edilen proje sayısının fazla olması sebebiyle, uygulamalara ait kayna
 
 **1** adet **Redis** sunucusuna ait kullanıcı adı/şifre bilgisi tespit edilmiş olup, bu sunucuya başarılı bir şekilde erişim sağlandığı görülmektedir.
 
-![](06.png)
+![1 adet Redis sunucusuna ait kullanıcı adı/şifre bilgisi tespit edilmiş olup, bu sunucuya başarılı bir şekilde erişim sağlandığı görülmektedir.](06.png)
 
 **1** adet **Google AI** servis hesabına ilişkin ID ve anahtar değeri tespit edilmiştir.
 

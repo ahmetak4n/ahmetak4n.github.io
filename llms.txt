@@ -1,0 +1,22 @@
+---
+permalink: /llms.txt
+---
+# {{ site.title }}
+
+> {{ site.description }}
+
+Author: {{ site.author.name }} ({{ site.tagline }}). Based in Ankara, Türkiye. Writes primarily in Turkish about application security, mobile reverse engineering, and vulnerability research (CVE write-ups).
+
+## About
+- [About]({{ '/about/' | absolute_url }}): Author bio, speaking engagements, and certifications.
+
+## Posts
+{% for post in site.posts %}- [{{ post.title }}]({{ post.url | absolute_url }}): {{ post.description | default: post.excerpt | strip_html | strip_newlines | truncate: 200 }}
+{% endfor %}
+## Categories
+{% assign categories = site.categories | sort %}
+{% for category in categories %}- [{{ category[0] }}]({{ '/categories/' | append: category[0] | append: '/' | absolute_url }})
+{% endfor %}
+## Optional
+- [Sitemap]({{ '/sitemap.xml' | absolute_url }})
+- [RSS feed]({{ '/feed.xml' | absolute_url }})

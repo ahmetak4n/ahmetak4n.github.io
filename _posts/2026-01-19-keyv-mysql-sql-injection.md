@@ -32,17 +32,17 @@ Gemini yardımıyla kaynak kod inceleme ve zafiyet bulmaya yönelik çalışmala
 
 Gemini ile gerçekleştirilen analiz sonucunda elde edilen çıktı aşağıdaki şekildedir.
 
-![](01.png)
+![Gemini ile gerçekleştirilen analiz sonucunda elde edilen çıktı aşağıdaki şekildedir.](01.png)
 
 Analiz sonucunda keyv/packages/mysql/src/index.ts dosyası içerisinde, 215 numaralı satırda bulunan has metodunun SQL Injection zafiyetine sahip olduğu, bu zafiyetin nasıl kötüye kullanabileceği ve zafiyetin nasıl çözülebileceğine ait örnekler Gemini tarafından oluşturulmuştur.
 
 SQL Injection zafiyetine neden olan has metodu içeriği aşağıdaki şekildedir.
 
-![](02.png)
+![SQL Injection zafiyetine neden olan has metodu içeriği aşağıdaki şekildedir.](02.png)
 
 Çok net bir zafiyet olsada çalışma zamanında zafiyetin kötüye kullanılabileceği göstermek adına aşağıdaki gibi ufak bir demo uygulaması geliştirilmiştir. Demo uygulama içerisinde [@keyv/mysql](https://www.npmjs.com/package/@keyv/mysql) kütüphanesinin entegre edilmesi ve zafiyete neden olan has metodunun kullanılması sağlandı.
 
-![](03.png)
+![Demo uygulama içerisinde @keyv/mysql kütüphanesinin entegre edilmesi ve zafiyete neden olan has metodunun kullanılması sağlandı.](03.png)
 
 Zafiyete neden olan SQL sorgusu aşağıdaki şekildedir.
 
@@ -60,7 +60,7 @@ SELECT EXISTS ( SELECT * FROM keyv WHERE id = '1' ) UNION (SELECT SLEEP(10));--
 
 BurpSuite üzerinden ilgili payload değerini gönderdiğimizde sunucu cevabının >10 saniye sonrasında iletildiğini görmekteyiz.
 
-![](04.png)
+![BurpSuite üzerinden ilgili payload değerini gönderdiğimizde sunucu cevabının >10 saniye sonrasında iletildiğini görmekteyiz.](04.png)
 
 ## Exploit
 
@@ -68,7 +68,7 @@ search parametresi yardımıyla göndermiş olduğumuz SQL sorgularının hedef 
 
 İlk olarak demo amaçlı oluşturduğumuz veri tabanı içerisine users isimli bir tablo ekliyoruz.
 
-![](05.png)
+![İlk olarak demo amaçlı oluşturduğumuz veri tabanı içerisine users isimli bir tablo ekliyoruz.](05.png)
 
 Daha sonra aşağıdaki sorgu yardımıyla users tablosu içerisinden name değerinin karakter-karakter okumasını gerçekleştiriyoruz.
 
@@ -76,7 +76,7 @@ Daha sonra aşağıdaki sorgu yardımıyla users tablosu içerisinden name değe
 search=1%27+)+OR+IF(SUBSTR((SELECT+name+from+test_db%2eusers+LIMIT+1),1,1)%3d%27x%27,SLEEP(10),0)%3b--+
 ```
 
-![](06.png)
+![search=1%27+)+OR+IF(SUBSTR((SELECT+name+from+test_db%2eusers+LIMIT+1),1,1)%3d%27x%27,SLEEP(10),0)%3b--+](06.png)
 
 Ekranda görüleceği üzere anethole değerine ait her karakter sonucunda sunucunun cevap süresinin >10 saniye olduğu görülmektedir.
 

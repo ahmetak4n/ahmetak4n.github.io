@@ -1,5 +1,5 @@
 theme: jekyll-theme-chirpy
-lang: en
+lang: tr-TR
 timezone: Europe/Istanbul
 
 title: ahmetak4n
@@ -8,12 +8,19 @@ description: ahmetak4n’s blog — application security, mobile and web securit
 url: https://ahmetakam.com
 baseurl: ""
 avatar: /assets/img/avatar.png
+logo: /assets/img/avatar.png
+
+author:
+  name: Ahmet Akan
+  twitter: ahmetak4n
+  url: https://ahmetakam.com/about/
 
 github:
   username: ahmetak4n
 
 twitter:
   username: ahmetak4n
+  card: summary_large_image
 
 social:
   name: Ahmet Akan
