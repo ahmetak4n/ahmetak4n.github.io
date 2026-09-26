@@ -9,7 +9,7 @@ tagline: Application Security Engineer, Golang, Java
 description: ahmetak4n’s blog — application security, mobile and web security research.
 url: https://ahmetak4n.github.io
 baseurl: ""
-avatar: https://secure.gravatar.com/avatar/d678240cfb8821cc703e90ccafd0b9094031bf80e21e41e2fc63ef807eb65255?s=256&d=identicon&r=g
+avatar: /assets/img/avatar.png
 
 github:
   username: ahmetak4n
